@@ -1,0 +1,33 @@
+plugins{
+    id 'java'    
+}
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+dependencies{
+    testImplementation 'com.intuit.karate:karate-junit5:1.2.0.RC5'
+    testImplementation 'net.masterthought:cucumber-reporting:3.8.0'
+    implementation 'com.intuit.karate:karate-gatling:1.2.0.RC5'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
+    implementation 'junit:junit:4.13.2'
+}
+
+test{
+    useJUnitPlatform()
+    systemProperty "karate.env", System.properties.getProperty("karate.env")
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDirs = ['src/test/resources', 'src/test/scala','src/test/java']
+        }
+    }
+}
